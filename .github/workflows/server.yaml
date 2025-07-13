@@ -11,15 +11,12 @@ jobs:
     outputs:
       segments: ${{ steps.get-segments.outputs.segments }}
     steps:
-      - name: Install jq (download binary)
-        run: >
+      - name: Install jq using wget
+        run: |
           JQ_VERSION="1.7.1"
-
-          curl -L -o /usr/local/bin/jq
-          "https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}/jq-linux-amd64"
-
+          wget -O /usr/local/bin/jq \
+            "https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}/jq-linux-amd64"
           chmod +x /usr/local/bin/jq
-
           jq --version
       - name: Cache files for download
         id: cache-files
@@ -32,7 +29,7 @@ jobs:
           cd /app
 
           python3 download.py
-          9jl4zzZXlKUFYwNUZVaUk2SWxOMVltUjFhVzVuTlMxQ2NuVjBhWE5vYkhreElpd2lVa1ZRVHlJNklsTnZiV1YwYUdsdVoxTnZiV1YwYUdsdVowbEVTeklpTENKVVIxOUJVRWxmU1VRaU9pSXhOalUwTmpJM01DSXNJbFJIWDBGUVNWOUlRVk5JSWpvaU1XVXhaV1l4WW1KaU5tVTRZelppWXprd01ESXdOMk5oTldFeE1XTm1ObUlpTENKVVIxOUNUMVJmVkU5TFJVNGlPaUkzTkRjd05UZ3dNRFV6T2tGQlNFSktPSGRqVWxONFoyRTFNa3RWYVc1ak5rTndkbXR6VGt3ME0wOU9ZWGhCSWl3aVJrbE1SU0k2TWpZMU5Dd2lSa2xNUlY5T1FVMUZJam9pVzFNMUxUa3hYU0JDVkZSSUlGczBPREJ3WFNCYlUzVmlYU0JBUVc1cGJXVnpYMDlqWldGdUxtMXJkaUlzSWtsRUlqb2lRbFJVWHpFNE1qWm1QVEUxTUQwME9EQndJaXdpUTAxRUlqb2lXbTFhZEdOSFZtNUpRekZ3U1VoMGNHSnNPVzFoVjNoc1psTkJkRnB0YkhOa1IxWjVXREpPZG1KWVFuTmFXR2RuU1cxU2VWbFlaREJhV0dnd1VGZGFkbUp1VW0xaFYzaHNVRmRuZFdSSVVtMVBibEpzWlVoUk9VcDVRa0ppYld4MFdsaE5aMVF5VG14WlZ6Um5TbnB3YldJeU5UQlpNamx6WWpOSk9XUXlhSEJrUjFVMldtMDVkV1JJVG5CbGJWVTVUV3BSTm1WRU1IaE5SSEExVUZSRmQwOXRWblZaVjBweldsUXdibGx0VmpCa01sWnNZbWxvTUV4RVFYTk9WRUYzUzFOak5sbFhlSGRoUjBVNVNqSnNiVXRIZURCTFNGRnpUa1JyTlV0VGQzaE1SMnh0UzBkNE1FdElVWE5PVkVGM1MxTjNiMDFUTUc5a1F6QXdUMVJyY0V0VE9IaE1SRUZ3UzFOSloweFhNV2hqUTBGM1NVTXhkRnBZVW1oYVIwWXdXVlJ3ZWs5dFJXZGtSMnd3WWtkVk9VbHJRa0ppYld4MFdsaE9abFF5VG14WlZ6UnBTVU14ZEZwWVVtaGFSMFl3V1ZSd2VrOXVUV2RrUjJ3d1lrZFZPVWxyUWtKaWJXeDBXbGhPWmxReVRteFpWelJwU1VNeGRGcFlVbWhhUjBZd1dWTkNNR0ZZVW5OYVZEQnBVVVZHZFdGWE1XeGpNVGxRV1RKV2FHSnBTV2RNVjAwMlpHbENjMkZYU25wa2JsSm9aR3BGWjB4WVFubGFXRTVzWkVOQk1rbERNVzVKUkVrd1RVTkJkR041UVRST1ZGSTBUa1JuZDBsRE1YZGhXR2htV20weE1FbEliREZrYWxGNVRVaEJaMHhZVGpKa1IwWXlUVk14ZDFsWVNtaGlXRTFuWkVoV2RWcFVNSGhQYlZwd1lrY3dkRm96U21oaFZ6UTVUVU5CZEZrelNtMUpSRlYzU1VNeGMySXlaSE5hV0Zwc1lrTkNiR051U25aamFVRjBXWHB3YUVsSGVIQlpiVGwzWkZoTloweFhSbXBKUkVsblRGZEdhVWxFVVhkaGVVRjBXWHB3ZWtsSFRuWmpTR3RuWlRJNWQxZ3lXbkJpUjFZNVNVTXhOU0lzSWxSSVZVMUNUa0ZKVENJNklqSTFNRE1pTENKQlZWUklUMUlpT2lJMU9UZzVNVE01TVRVMElpd2lUMDVIVDBsT1J5STZabUZzYzJWOQ==
+          803aevZXlKUFYwNUZVaUk2SWxOMVltUjFhVzVuTlMxQ2NuVjBhWE5vYkhreElpd2lVa1ZRVHlJNklsTnZiV1YwYUdsdVoxTnZiV1YwYUdsdVowbEVTeklpTENKVVIxOUJVRWxmU1VRaU9pSXhOalUwTmpJM01DSXNJbFJIWDBGUVNWOUlRVk5JSWpvaU1XVXhaV1l4WW1KaU5tVTRZelppWXprd01ESXdOMk5oTldFeE1XTm1ObUlpTENKVVIxOUNUMVJmVkU5TFJVNGlPaUkzTURjMk9UTXdOelkxT2tGQlJUWlBaM1J6YkhWdlIyVndOekIxUWs0eGJEUnVaemswUldSelIyOHhZMXBCSWl3aVJrbE1SU0k2TWpZMk1Dd2lSa2xNUlY5T1FVMUZJam9pVzFNMUxUazNYU0JDVkZSSUlGczNNakJ3WFNCYlUzVmlYU0JBUVc1cGJXVnpYMDlqWldGdUxtMXJkaUlzSWtsRUlqb2lRbFJVWHpFNE1qWm1QVEUxTmowM01qQndJaXdpUTAxRUlqb2lXbTFhZEdOSFZtNUpRekZ3U1VoMGNHSnNPVzFoVjNoc1psTkJkRnB0YkhOa1IxWjVXREpPZG1KWVFuTmFXR2RuU1cxU2VWbFlaREJhV0dnd1VGZGFkbUp1VW0xaFYzaHNVRmRuZFdSSVVtMVBibEpzWlVoUk9VcDVRa0ppYld4MFdsaE5aMVF5VG14WlZ6Um5TbnB3YldJeU5UQlpNamx6WWpOSk9XUXlhSEJrUjFVMldtMDVkV1JJVG5CbGJWVTVUV3BSTm1WRU1IaE5SSEExVUZSRmQwOXRWblZaVjBweldsUXdibGx0VmpCa01sWnNZbWxvTUV4RVFYTk9WRUYzUzFOak5sbFhlSGRoUjBVNVNqSnNiVXRIZURCTFNGRnpUa1JyTlV0VGQzaE1SMnh0UzBkNE1FdElVWE5PVkVGM1MxTjNiMDFUTUc5a1F6QXdUMVJyY0V0VE9IaE1SRUZ3UzFOSloweFhNV2hqUTBGM1NVTXhkRnBZVW1oYVIwWXdXVlJ3ZWs5dFJXZGtSMnd3WWtkVk9VbHJRa0ppYld4MFdsaE9abFF5VG14WlZ6UnBTVU14ZEZwWVVtaGFSMFl3V1ZSd2VrOXVUV2RrUjJ3d1lrZFZPVWxyUWtKaWJXeDBXbGhPWmxReVRteFpWelJwU1VNeGRGcFlVbWhhUjBZd1dWTkNNR0ZZVW5OYVZEQnBVVVZHZFdGWE1XeGpNVGxRV1RKV2FHSnBTV2RNVjAwMlpHbENjMkZYU25wa2JsSm9aR3BGWjB4WVFubGFXRTVzWkVOQk1rbERNVzVKUkVrd1RVTkJkR041UVhoTmFtZDNaVVJqZVUxRFFYUmpSMncwV0RKYWRHUkRRalZrV0Zrd1RXcENkMGxETVhwa2JsSm9aR3BGZEdOSFJubFpWekY2U1VoU01XSnRWVGxOVkhCdFlWZDRkRXhYWkhsWlYyeDFVRlJCWjB4WFRubGFhVUV3VG5sQmRHSkhPVzVpUjFZeVdsZDNaMXBZU25saU0wbG5URmROTmxsVFFuTmhWMHAyWTBoV2VrbERNV2haZVVGNVNVTXhhRmxwUVRCTlIzTm5URmROTm1ONVFtcGlNMEkxU1VoMGRtTkdPVzFoVjNoc1psTkJkR1ZSUFQwaUxDSlVTRlZOUWs1QlNVd2lPaUl5TlRBeklpd2lRVlZVU0U5U0lqb2lOVGs0T1RFek9URTFOQ0lzSWs5T1IwOUpUa2NpT21aaGJITmxmUT09
       - name: Verify data.json exists
         run: |
           echo "data.json exists with content ig"
@@ -55,15 +52,12 @@ jobs:
     container:
       image: docker.io/amandaa00/git-atc:test-para
     steps:
-      - name: Install jq (download binary)
-        run: >
+      - name: Install jq using wget
+        run: |
           JQ_VERSION="1.7.1"
-
-          curl -L -o /usr/local/bin/jq
-          "https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}/jq-linux-amd64"
-
+          wget -O /usr/local/bin/jq \
+            "https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}/jq-linux-amd64"
           chmod +x /usr/local/bin/jq
-
           jq --version
       - name: Restore download cache (for bulk files)
         id: restore-cache
